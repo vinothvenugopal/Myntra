@@ -1,9 +1,12 @@
 package testcases;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +17,12 @@ public class TestCase1 {
 	public void womenCoatAndJackets() throws InterruptedException
 	{
 		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-		ChromeDriver driver = new ChromeDriver();
+		Map<String, Object> prefs = new HashMap<String, Object>();
+		prefs.put("profile.default_content_setting_values.notifications", 2);
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", prefs);
+		ChromeDriver driver = new ChromeDriver(options);
+		//ChromeDriver driver = new ChromeDriver();
 		System.out.println("Browser Launched");
 		driver.manage().window().maximize();
 		System.out.println("Browser Mazimized");
